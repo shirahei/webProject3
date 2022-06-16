@@ -1,0 +1,15 @@
+<nav id="item2">
+    <a href="home">Home</a>
+    <a href="contact">contact</a>
+    <a href="log_in">login</a>
+    <a href="user">user</a>
+    <a href="google">google</a>
+    <a href="assignment3_2">assignment3_2</a>
+    {% if session['name'] %}
+        Logged in, {{ session['name'] }}
+        <a href="log_out">Log Out</a>
+    {% else %}
+        Guest
+    {% endif %}
+
+</nav>

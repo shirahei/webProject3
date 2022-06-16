@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Contact us</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='design.css') }}">
+    <script defer src="../static/ActiveNavBar.js"></script>
+    <style></style>
+</head>
+
+<body>
+<div id="container">
+    <div id="item1">Contact</div>
+    {% include('nav.html') %}
+    <form id="item3">
+        <b><label for="FirstName">First Name:</label></b>
+        <input type="text" id="FirstName" name="FirstName"><br><br>
+        <b><label for="LastName">Last Name:</label></b>
+        <input type="text" id="LastName" name="LastName"><br><br>
+        <b><label>Gender:</label></b><br>
+        <input type="radio" id="male" name="gender">
+        <label for="male">Male</label><br>
+        <input type="radio" id="female" name="gender">
+        <label for="female">Female</label><br>
+        <input type="radio" id="other" name="gender">
+        <label for="other">Other</label><br><br>
+        <b><label for="age">Age:</label></b>
+        <input type="number" name="age" id="age" min="1" max="200" step="1"><br><br>
+        <b><label for="email">Email:</label></b>
+        <input type="email" id="email" name="email"><br><br>
+        <b><label for="phone">Phone:</label></b>
+        <input type="tel" id="phone" name="phone"><br><br><br>
+        <b><label for="comment">leave a comment:</label></b><br>
+        <textarea id="comment" name="comment" cols="30" rows="3"></textarea><br>
+        <button type="reset">Reset</button>
+        <input type="submit"><br>
+    </form>
+</div>
+</body>
+{% include('footer.html') %}
+</html>
