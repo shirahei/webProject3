@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include('links.html') %}
+    <title>{% block title %}Assignment3_1{% endblock %}</title>
+</head>
+<body>
+<div id="container">
+    <div id="item1">{% block item1 %}{% endblock %}
+
+        {% if session['name'] %}
+            <p> Hello {{ session['name'] }}</p>
+        {% else %}
+            <p> Hello Guest</p>
+        {% endif %}
+
+    </div>
+    {% include('nav.html') %}
+    <div id="item3">
+        {% block item3 %}
+            {% if session['name'] %}
+                <div class="ball">Welcome {{ session['name'] | upper() }}</div>
+            {% else %}
+                <div class="ball">Welcome Guest</div>
+            {% endif %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+{% include('footer.html') %}
+</html>

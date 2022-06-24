@@ -1,26 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static',filename='design.css') }}">
-    <script defer src="../static/ActiveNavBar.js"></script>
-    <title>home page</title>
-    <style></style>
-</head>
+{% extends 'base.html' %}
+{% block title %}
+    Home
+{% endblock %}
 <body>
 <div id="container">
-    <div id="item1">Home</div>
-    {% include('nav.html') %}
+    <div id="item1">{% block item1 %}Home{% endblock %}</div>
     <div id="item3">
+    {% block item3 %}
         {% if session['name'] %}
             <div class="ball">Welcome {{ session['name'] | upper() }}</div>
         {% else %}
             <div class="ball">Welcome Guest</div>
         {% endif %}
+    {% endblock %}
     </div>
 </div>
 </body>
-{% include('footer.html') %}
-</html>

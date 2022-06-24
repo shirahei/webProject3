@@ -2,12 +2,22 @@
     box-sizing: border-box;
 }
 
+p {
+    font-size: 15px;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 div {
     padding: 200px;
     text-align: center;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 5px;
     gap: 5px;
+}
+
+.active {
+    color: rgba(201, 163, 213, 0.75);
 }
 
 #container {
@@ -20,23 +30,26 @@ div {
 
 #item1 {
     grid-area: Header;
-    font-size:100px;
-    background-color:  solid rgb(202, 179, 179);
+    font-size: 100px;
+    background-color: solid rgb(202, 179, 179);
     margin: 10px;
-    background-color: #f7f2ec; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f2ec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #item2 {
     grid-area: Nav;
-    font-size:15px;
-    background-color: #f7f2ec; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 15px;
+    background-color: #f7f2ec;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #item3 {
     grid-area: Main;
-    font-size:20px;
+    font-size: 20px;
     margin: 10px;
-    background-color: bisque; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: bisque;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .ball {
@@ -47,31 +60,42 @@ div {
 
 @keyframes slidein {
     from {
-      margin-left: 100%;
-      width: 300%;
+        margin-left: 100%;
+        width: 300%;
     }
-  
-    to {
-      margin-left: 0%;
-      width: 100%;
-    }
-  }
 
-    footer{
-        background-color: rgb(210, 205, 205);
-        padding: 10px;
-        text-align: center;
-        color: white; 
+    to {
+        margin-left: 0%;
+        width: 100%;
     }
-    
-@media only screen and (max-width: 600px) {
-    body {
-        background-color: rgb(243, 236, 236);
+}
+
+footer {
+    background-color: rgb(210, 205, 205);
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+
+@media only screen and (max-width: 800px) {
+    .home-grid {
+        margin-right: 11vw;
+        grid-template-columns: 100%;
+        row-gap: 4vh;
+        grid-template-areas:
+            'Header'
+            'Nav'
+            'Main';
     }
-    #container {
-        display: grid;
-        grid-template-areas: 'Header Header'
+}
+
+#container {
+    display: grid;
+    grid-template-areas: 'Header Header'
         'Nav Nav'
         'Main Main';
-    }}
+}
+
+
     

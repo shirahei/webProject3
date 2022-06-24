@@ -10,12 +10,6 @@ app.config['SESSION_PERMANENT'] = True
 app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)
 
 
-@app.route('/')
-def home_route():
-    username = ''
-    return render_template("home.html", username=username)
-
-
 @app.route('/contact')
 def contact_func():
     return render_template("contact.html")
@@ -25,6 +19,10 @@ def contact_func():
 def home_func():
     username = ''
     return render_template("home.html", username=username)
+
+@app.route('/')
+def home_route():
+    return redirect(url_for('home_func'))
 
 
 @app.route('/assignment3_1')
@@ -95,7 +93,7 @@ def user_func():
 @app.route('/log_out')
 def logout_func():
     session.clear()
-    return redirect(url_for('login_func'))
+    return render_template('assignment3_2.html')
 
 
 @app.route('/session')
