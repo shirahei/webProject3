@@ -6,12 +6,12 @@
 <body>
 <div id="container">
     <div id="item1">{% block item1 %}Home{% endblock %}</div>
-    <form id="item3">
-        {% block item3 %}
+    {% block item3 %}
+        <form id="item3" action="/contact" methods=['GET','POST']>
             <b><label for="FirstName">First Name:</label></b>
-            <input type="text" id="FirstName" name="FirstName"><br><br>
+            <input type="text" id="FirstName" name="FirstName" required><br><br>
             <b><label for="LastName">Last Name:</label></b>
-            <input type="text" id="LastName" name="LastName"><br><br>
+            <input type="text" id="LastName" name="LastName" required><br><br>
             <b><label>Gender:</label></b><br>
             <input type="radio" id="male" name="gender">
             <label for="male">Male</label><br>
@@ -22,14 +22,14 @@
             <b><label for="age">Age:</label></b>
             <input type="number" name="age" id="age" min="1" max="200" step="1"><br><br>
             <b><label for="email">Email:</label></b>
-            <input type="email" id="email" name="email"><br><br>
+            <input type="email" id="email" name="email" required><br><br>
             <b><label for="phone">Phone:</label></b>
-            <input type="tel" id="phone" name="phone"><br><br><br>
+            <input type="tel" id="phone" name="phone" required><br><br><br>
             <b><label for="comment">leave a comment:</label></b><br>
-            <textarea id="comment" name="comment" cols="30" rows="3"></textarea><br>
+            <textarea id="comment" name="comment" cols="30" rows="3" required></textarea><br>
             <button type="reset">Reset</button>
-            <input type="submit"><br>
-        {% endblock %}
-    </form>
+            <button type="submit" class="Submitbtn">Submit</button>
+        </form>
+    {% endblock %}
 </div>
 </body>
