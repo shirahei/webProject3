@@ -3,6 +3,9 @@ from flask import render_template, request, redirect, url_for
 from datetime import timedelta
 from flask import request, session, jsonify
 from flask import session
+import time
+import requests
+import mysql.connector
 
 app = Flask(__name__)
 app.secret_key = '147258'
@@ -19,6 +22,7 @@ def contact_func():
 def home_func():
     username = ''
     return render_template("home.html", username=username)
+
 
 @app.route('/')
 def home_route():
@@ -84,11 +88,13 @@ def login_func():
             "Please Sign up")
     return render_template('log_in.html')
 
+
 @app.route('/user', methods=['GET', 'POST'])
 def user_func():
     return render_template('user.html',
                            hobbies=['Playing chess', 'Solving Puzzle Games', 'Reading Books and Articles',
                                     'Cooking and Baking', 'Traveling'])
+
 
 @app.route('/log_out')
 def logout_func():
@@ -100,9 +106,62 @@ def logout_func():
 def session_func():
     return jsonify(dict(session))
 
+
 @app.route('/google')
 def redirect_to_link():
     return redirect('https://google.com')
+
+## Assignment_4
+from assignment_4.assignment_4 import assignment_4
+app.register_blueprint(assignment_4)
+
+@app.route('/assignment_4/users')
+def users_4():
+    query = 'SELECT * FROM users'
+    users_list = interact_db(query, query_type='fetch')
+    return jsonify(users_list)
+
+
+@app.route('/assignment_4/restapi_users', defaults={'user_id': 1})
+@app.route('/assignment_4/restapi_users/<int:user_id>')
+def get_user(user_id):
+    query = f'select * from users where id= {user_id}'
+    users_list = interact_db(query, query_type='fetch')
+
+    if len(users_list) == 0:
+        return_dict = {
+            'message': 'user not found'
+        }
+    else:
+        user_list = users_list[0]
+        return_dict = {'name': user_list.name,
+                       'email': user_list.email
+                       }
+    return jsonify(return_dict)
+
+
+def interact_db(query, query_type: str):
+    return_value = False
+    connection = mysql.connector.connect(host='localhost',
+                                         user='root',
+                                         passwd='root',
+                                         database='myflaskappdb')
+    cursor = connection.cursor(named_tuple=True)
+    cursor.execute(query)
+
+    if query_type == 'commit':
+        # Use for INSERT, UPDATE, DELETE statement.
+        connection.commit()
+        return_value = True
+
+    if query_type == 'fetch':
+        # Use for SELECT statement.
+        query_result = cursor.fetchall()
+        return_value = query_result
+
+    connection.close()
+    cursor.close()
+    return return_value
 
 if __name__ == '__main__':
     app.debug = True

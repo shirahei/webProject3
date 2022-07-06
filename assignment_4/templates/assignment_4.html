@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}
+    Assignment4
+{% endblock %}
+<body>
+<div id="container">
+    <div id="item1">{% block item1 %}Assignment4{% endblock %}</div>
+    <div id="item3">
+        {% block item3 %}
+
+            <h1>Insertion Form:</h1>
+            <form action="/insert_user" method="post" onsubmit="NewUser()">
+                <input type="text" name="name" placeholder="Write your name" required>
+                <input type="email" name="email" placeholder="Write Your Email Address" required>
+                <input type="password" name="password" placeholder="*********" required>
+                <input type="number" name="user_id" placeholder="Write Your ID" required>
+                <input type="submit">
+            </form>
+
+            <h1>List of Users:</h1>
+            {% for user in users %}
+                <hr> Name: {{ user.name }}<br> Email: {{ user.email }}
+                <form action="/delete_user" method="post">
+                    <input type="hidden" name="name" value="{{ user.name }}">
+                    <input type="submit" value="Delete">
+                </form>
+                <form action="/update_user" method="post">
+                    <input type="hidden" name="name" value="{{ user.name }}">
+                    <label for="age">Age:</label>
+                    <input type="number" name="age" placeholder="Write your age" required>
+                    <input type="submit">
+                </form>
+                </hr>
+            {% endfor %}
+        {% endblock %}
+    </div>
+</div>
+</body>

@@ -16,3 +16,12 @@ const links = document.querySelectorAll('nav a').forEach(link => {
         link.classList.add('active');
     }
 });
+
+function NewUser(){
+alert('User added successfully')}
+
+function UpdateAge(){
+confirm('Are You Sure?')}
+
+function DeleteUser(){
+confirm('Are You Sure?')}
