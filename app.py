@@ -111,15 +111,30 @@ def session_func():
 def redirect_to_link():
     return redirect('https://google.com')
 
+
 ## Assignment_4
 from assignment_4.assignment_4 import assignment_4
+
 app.register_blueprint(assignment_4)
+
 
 @app.route('/assignment_4/users')
 def users_4():
     query = 'SELECT * FROM users'
     users_list = interact_db(query, query_type='fetch')
     return jsonify(users_list)
+
+
+@app.route('/assignment_4/outer_source', methods=['POST', 'GET'])
+def outer_source():
+    if request.method == 'POST':
+        id = request.form['backend_id']
+        reqres = "https://reqres.in/api/users/%s" % (str(id),)
+        return redirect(reqres)
+    else:
+        return render_template('assignment4_outer_source.html')
+def fetchtest():
+    return redirect(reqres)
 
 
 @app.route('/assignment_4/restapi_users', defaults={'user_id': 1})
@@ -162,6 +177,7 @@ def interact_db(query, query_type: str):
     connection.close()
     cursor.close()
     return return_value
+
 
 if __name__ == '__main__':
     app.debug = True
